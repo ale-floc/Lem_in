@@ -1,10 +1,10 @@
 NAME = lem_in
 
-SRC = main.c
+SRC = main.c error.c init.c parse.c get.c tube.c
 
 OBJ = $(SRC:.c=.o)
 
-//FLAG = -Wall -Werror -Wextra
+FLAG = -Wall -Werror -Wextra -g
 
 LIBFT = libft -lft -lncurses
 
