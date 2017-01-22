@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-floc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anramos <anramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 17:00:53 by ale-floc          #+#    #+#             */
-/*   Updated: 2017/01/18 17:00:55 by ale-floc         ###   ########.fr       */
+/*   Updated: 2017/01/22 20:02:16 by anramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		parse_get_ants(t_env *env, char *line)
 			if (line[i] == '\0')
 			{
 				ants = ft_atoi(line);
-				if (ants < 1 || ft_strlen(line) > 8)
+				if (ants < 1 || ft_strlen(line + 1) > 8)
 					ft_error(env, 5);
 				else
 					break ;
@@ -54,11 +54,19 @@ t_list	*parse_room(t_env *env, char *line)
 {
 	t_list	*list;
 	char	**tmp;
+	int i;
 
+	i = 0;
 	list = env->begin;
-	tmp = ft_strsplit(line, ' ');
+	tmp = ft_strsplit_fn(line, is_space_or_tab);
 	if (is_strnb(env, tmp[1], tmp[2]))
 		list = ft_listpush(tmp, list, env);
+	while (tmp[i])
+	{
+		free(tmp[i]);
+		i++;
+	}
+	free(tmp);
 	return (list);
 }
 

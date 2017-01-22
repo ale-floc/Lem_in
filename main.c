@@ -2,7 +2,10 @@
 
 t_env	*check_command(t_env *env, char *line)
 {
-	line = ft_strtrim(line);
+	char *tmp;
+
+	tmp = NULL;
+	tmp = ft_strtrim(line);
 	if (!ft_strcmp("##start", line))
 	{
 		if (env->start == 0)
@@ -23,6 +26,7 @@ t_env	*check_command(t_env *env, char *line)
 		else
 			ft_error(env, 9);
 	}
+	free(tmp);
 	return (env);
 }
 
@@ -35,7 +39,7 @@ int 	space_room(t_env *env, char *line)
 	space = 0;
 	while (line[i])
 	{
-		if (line[i] == ' ')
+		if (ft_space(line[i]))
 			space++;
 		i++;
 	}
@@ -211,7 +215,7 @@ t_file	*push_fd(t_file *file, char *str)
 	if (file == NULL)
 	{
 		file = (t_file *)malloc(sizeof(t_file));
-		file->str = str;
+		file->str = ft_strdup(str);
 		file->next = NULL;
 	}
 	else
@@ -219,9 +223,10 @@ t_file	*push_fd(t_file *file, char *str)
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = (t_file *)malloc(sizeof(t_file));
-		tmp->next->str = str;
+		tmp->next->str = ft_strdup(str);
 		tmp->next->next = NULL;
 	}
+	free(str);
 	return (file);
 }
 
@@ -295,6 +300,34 @@ void	move_ants(t_env *env, int nb_ants)
 	}
 }
 
+void	free_final(t_env *env, t_file *file)
+{
+	while (file)
+	{
+		free(file->str);
+		free(file);
+		file = file->next;
+	}
+	while (env->begin)
+	{
+		free(env->begin->salle);
+		free(env->begin);
+		env->begin = env->begin->next;
+	}
+}
+
+char	*line_parse(t_env *env, char *line)
+{
+	char *tmp;
+
+	tmp = NULL;
+	if (ft_space(line[0]))
+		ft_error(env, 1);
+	tmp = ft_strtrim(line);
+	free(line);
+	return (tmp);
+}
+
 int 	main(int argc, char **argv)
 {
 	char *line;
@@ -308,7 +341,7 @@ int 	main(int argc, char **argv)
 		check_arg(env, ft_strtrim(argv[1]));
 	while (get_next_line(0, &line))
 	{
-		line = ft_strtrim(line);
+		line = line_parse(env, line);
 		if (env->nb_ants == -1 && ft_isdigit(line[0]))
 			env->nb_ants = parse_get_ants(env, line);
 		else if ('#' == line[0])
@@ -327,11 +360,14 @@ int 	main(int argc, char **argv)
 		while (file)
 		{
 			ft_putendl(file->str);
+			free(file->str);
+			free(file);
 			file = file->next;
 		}
 		move_ants(env, env->nb_ants);
 	}
 	else
 		ft_error(env, 1);
+	free_final(env, file);
 	return (0);
 }

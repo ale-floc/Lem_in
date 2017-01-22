@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-floc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anramos <anramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 17:10:01 by ale-floc          #+#    #+#             */
-/*   Updated: 2017/01/18 17:10:03 by ale-floc         ###   ########.fr       */
+/*   Updated: 2017/01/22 20:23:29 by anramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,10 @@ int					space_room(t_env *env, char *line);
 int					is_strnb(t_env *env, char *str1, char *str2);
 int					nb_of_rooms(t_env *env);
 int					ft_recursive_possible(t_list *start, t_env *env);
+int					is_space_or_tab(char c);
+int					ft_strcmp_join(char *s1, char *s2);
+char				**ft_strsplit_fn(char const *s, int (*f) (char));
+char				*ft_strjoin_join(char const *s1, char const *s2);
 t_env				*lem_init(void);
 t_env				*parse_diese(t_env *env, char *line);
 t_env				*check_command(t_env *env, char *line);
@@ -93,4 +97,5 @@ t_tube				*search_end(t_tube *tmp);
 t_tube				*end_exist_in_tube(t_tube *tmp);
 t_tube				*get_end_tube(t_env *env, t_list *end);
 t_file				*push_fd(t_file *file, char *str);
+
 #endif

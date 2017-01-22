@@ -3,14 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   tube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-floc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anramos <anramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 18:07:21 by ale-floc          #+#    #+#             */
-/*   Updated: 2017/01/18 18:07:22 by ale-floc         ###   ########.fr       */
+/*   Updated: 2017/01/22 20:04:44 by anramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+int	ft_strcmp_join(char *s1, char *s2)
+{
+	int i;
+	int result;
+
+	i = 0;
+	result = 0;
+	while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
+		i++;
+	result = (unsigned char)s1[i] - (unsigned char)s2[i];
+	free(s2);
+	return (result);
+}
+
+char	*ft_strjoin_join(char const *s1, char const *s2)
+{
+	int		i;
+	int		j;
+	char	*str;
+
+	if (!s1 || !s2)
+		return (NULL);
+	i = 0;
+	j = 0;
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) +
+		ft_strlen(s2) + 1));
+	if (!str)
+		return (NULL);
+	while (s1[i])
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		str[i] = s2[j];
+		i++;
+		j++;
+	}
+	str[i] = '\0';
+	free((char *)s2);
+	return (str);
+}
+
 
 t_env	*check_tube(t_env *env, char *line)
 {
@@ -19,7 +64,9 @@ t_env	*check_tube(t_env *env, char *line)
 	t_tube	*tube;
 	int		pass;
 	char	**split;
+	int i;
 
+	i = 0;
 	split = ft_strsplit(line, '-');
 	list = env->begin;
 	pass = 0;
@@ -30,14 +77,22 @@ t_env	*check_tube(t_env *env, char *line)
 			second = env->begin;
 			while (second)
 			{
-				if (!ft_strcmp(line, ft_strjoin(list->salle, ft_strjoin("-", second->salle))))
+				if (!ft_strcmp_join(line, ft_strjoin_join(list->salle, ft_strjoin("-", second->salle))))
 				{
 					if (!ft_strcmp(list->salle, second->salle))
 						ft_error(env, 3);
 					if (!check_if_exist_in_tube(list->tube, second))
 						list->tube = list_push_tube(list, second);
 					else
+					{
+						while (split[i])
+						{
+							free(split[i]);
+							i++;
+						}
+						free(split);
 						return (env);
+					}
 					tube = list->tube;
 					while (tube)
 						tube = tube->next;
@@ -50,6 +105,12 @@ t_env	*check_tube(t_env *env, char *line)
 	}
 	if (!pass)
 		ft_error(env, 1);
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 	return (env);
 }
 

@@ -1,6 +1,6 @@
 NAME = lem_in
 
-SRC = main.c error.c init.c parse.c get.c tube.c
+SRC = main.c error.c init.c parse.c get.c tube.c ft_strsplit_fn.c
 
 OBJ = $(SRC:.c=.o)
 

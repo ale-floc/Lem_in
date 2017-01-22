@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-floc <ale-floc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anramos <anramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/29 22:13:50 by ale-floc          #+#    #+#             */
-/*   Updated: 2014/11/29 22:15:15 by ale-floc         ###   ########.fr       */
+/*   Updated: 2017/01/20 15:27:57 by anramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t n);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_atoi(const char *str);
+int		ft_space(char c);
 int		ft_isupper(int c);
 int		ft_islower(int c);
 int		ft_isalpha(int c);
