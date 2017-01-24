@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anramos <anramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ale-floc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/18 17:00:53 by ale-floc          #+#    #+#             */
-/*   Updated: 2017/01/22 20:02:16 by anramos          ###   ########.fr       */
+/*   Created: 2017/01/24 18:59:56 by ale-floc          #+#    #+#             */
+/*   Updated: 2017/01/24 19:00:00 by ale-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_list	*parse_room(t_env *env, char *line)
 {
 	t_list	*list;
 	char	**tmp;
-	int i;
+	int		i;
 
 	i = 0;
 	list = env->begin;

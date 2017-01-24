@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit_fn.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anramos <anramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ale-floc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/09 14:04:52 by ale-floc          #+#    #+#             */
-/*   Updated: 2017/01/20 17:15:55 by anramos          ###   ########.fr       */
+/*   Created: 2017/01/24 18:59:03 by ale-floc          #+#    #+#             */
+/*   Updated: 2017/01/24 18:59:06 by ale-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		is_space_or_tab(char c)
+int			is_space_or_tab(char c)
 {
 	if (c == ' ' || c == '\t')
 		return (1);

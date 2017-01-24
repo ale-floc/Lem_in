@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anramos <anramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ale-floc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/18 17:10:01 by ale-floc          #+#    #+#             */
-/*   Updated: 2017/01/22 20:23:29 by anramos          ###   ########.fr       */
+/*   Created: 2017/01/24 19:00:11 by ale-floc          #+#    #+#             */
+/*   Updated: 2017/01/24 19:00:13 by ale-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct		s_list
 	int				room_end;
 	int				ants;
 	char			*string_ants;
+	int				space;
 	struct s_list	*next;
 	struct s_tube	*tube;
 }					t_list;
@@ -64,8 +65,9 @@ typedef struct		s_file
 void				ft_error(t_env *env, int error);
 void				error_usage(void);
 void				options_on(t_env *e, char c);
-void				lem_in_begin(t_env *env);
+void				start_ants(t_env *env);
 void				move_ants(t_env *env, int nb_ants);
+void				lem_in_begin(t_env *env, t_file *file);
 int					check_arg(t_env *e, char *str);
 int					parse_get_ants(t_env *env, char *line);
 int					parse_check(t_env *env, char *line);
@@ -77,8 +79,10 @@ int					nb_of_rooms(t_env *env);
 int					ft_recursive_possible(t_list *start, t_env *env);
 int					is_space_or_tab(char c);
 int					ft_strcmp_join(char *s1, char *s2);
+int					display_ants(int ant, t_tube **list, t_list **s, int *m);
 char				**ft_strsplit_fn(char const *s, int (*f) (char));
 char				*ft_strjoin_join(char const *s1, char const *s2);
+char				*line_parse(t_env *env, char *line);
 t_env				*lem_init(void);
 t_env				*parse_diese(t_env *env, char *line);
 t_env				*check_command(t_env *env, char *line);
@@ -90,6 +94,7 @@ t_list				*init_one_list(char *str, int x, int y, t_env *env);
 t_list				*ft_listpush(char **str, t_list *list, t_env *env);
 t_list				*get_end(t_env *env);
 t_list				*get_start(t_env *env);
+t_tube				*display_end_ants(t_tube *list, t_list *end, t_list **s);
 t_tube				*parse_list(t_env *env);
 t_tube				*list_push_tube(t_list *list, t_list *second);
 t_tube				*push_tube(t_tube *tube, t_list *list);

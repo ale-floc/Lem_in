@@ -1,12 +1,12 @@
 NAME = lem_in
 
-SRC = main.c error.c init.c parse.c get.c tube.c ft_strsplit_fn.c
+SRC = main.c error.c init.c parse.c get.c tube.c util.c list.c check.c check_tube.c ants.c ft_strsplit_fn.c
 
 OBJ = $(SRC:.c=.o)
 
-FLAG = -Wall -Werror -Wextra -g
+FLAG = -Wall -Werror -Wextra
 
-LIBFT = libft -lft -lncurses
+LIBFT = libft -lft
 
 INCLUDES = -I libft/includes
 
@@ -28,7 +28,7 @@ clean :
 			rm -f $(OBJ)
 
 fclean : clean
-		rm -f libft.a
-			rm -f $(NAME)
+		rm -f ./libft/libft.a
+		rm -f $(NAME)
 
 re : fclean all
