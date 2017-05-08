@@ -14,3 +14,18 @@ cd ~/Lem_in && make
 ~~~sh
 ./lem_in [-e] < [maps]
 ~~~
+
+## notice
+
+Analyse d'une maps
+  > 5 <- nombre de fourmis
+  
+  > salle1 x y <- le nom de la salle suivis de sont point X et Y
+  
+  > ##start <- la prochaine salle valide sera la salle de depart de la fourmilieres
+  
+  > ##end <- la prochaine salle valide sera la fin de la fourmilieres
+  
+  > #commentaires <- un commentaires
+  
+  > salle1-salle2 <- relie la salle1 a la salle2
