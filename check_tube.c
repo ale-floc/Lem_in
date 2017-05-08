@@ -43,12 +43,10 @@ t_env			*check_and_push(t_env *env, t_list *list, int *i, char *line)
 t_env			*check_tube(t_env *env, char *line)
 {
 	t_list		*list;
-	t_tube		*tube;
 	char		**split;
 	int			i;
 
 	i = 0;
-	tube = NULL;
 	split = ft_strsplit(line, '-');
 	list = env->begin;
 	while (list)
@@ -71,9 +69,6 @@ t_env			*check_tube(t_env *env, char *line)
 
 t_env			*check_room_or_tube(t_env *env, char *line)
 {
-	int			o;
-
-	o = 0;
 	if (space_room(env, line))
 	{
 		env->begin = parse_room(env, line);

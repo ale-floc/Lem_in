@@ -14,12 +14,10 @@
 
 int			ft_recursive_possible(t_list *start, t_env *env)
 {
-	t_list	*list;
 	t_tube	*tmp;
 
 	tmp = NULL;
 	tmp = push_tube(tmp, start);
-	list = env->begin;
 	ft_recursive_tube(start->tube, env, tmp);
 	if (!env->get_end || !env->path)
 		ft_error(env, 2);
@@ -31,9 +29,7 @@ void		start_ants(t_env *env)
 {
 	t_list	*start;
 	t_list	*end;
-	int		i;
 
-	i = 0;
 	start = env->begin;
 	end = env->begin;
 	while (start)
