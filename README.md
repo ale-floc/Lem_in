@@ -7,7 +7,7 @@ Ce projet de l'école 42, à réaliser seul, est un projet d'algorithmie ayant p
 ## install & usage
 
 ~~~sh
-git clone https://github.com/kaboff/Lem_in.git ~/Lem_in
+git clone https://github.com/ale-floc/Lem_in.git ~/Lem_in
 cd ~/Lem_in && make
 ~~~
 
